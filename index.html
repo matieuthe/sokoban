@@ -7,6 +7,8 @@
   <body>
     <canvas id="myCanvas" width="800" height="800" style="border:1px solid #FFFFFF;"></canvas>
     <img id="box" src="box.png" hidden>
+    <img id="mur" src="mur.jpg" hidden>
+    <img id="mario" src="mario.gif" hidden>
   </body>
 
   <script>
@@ -15,6 +17,8 @@
     let xMario = 0;
     let yMario = 5;
     let boxImage = document.getElementById("box");
+    let murImage = document.getElementById("mur");
+    let marioImage = document.getElementById("mario");
 
     let box = [
                 [4,5],
@@ -60,7 +64,8 @@
         for(let j = 0; j < board.length; j++)
           if(board[i][j] == 1){
             ctx.fillStyle = "red";
-            ctx.fillRect(j*largeurCase, i*largeurCase, largeurCase, largeurCase);
+            ctx.drawImage(murImage, j*largeurCase, i*largeurCase, largeurCase, largeurCase);      
+            //ctx.fillRect(j*largeurCase, i*largeurCase, largeurCase, largeurCase);
           }else if(board[i][j] == 5){
             ctx.fillStyle = "green";
             ctx.beginPath();
@@ -71,11 +76,10 @@
           }
 
       //Mario
-      ctx.fillStyle = "blue";
-      ctx.fillRect(yMario*largeurCase, xMario*largeurCase, largeurCase, largeurCase);
+      ctx.drawImage(marioImage, yMario*largeurCase, xMario*largeurCase + 2, largeurCase, largeurCase);      
       
       for(let i = 0; i < box.length; i++){
-        ctx.drawImage(boxImage, box[i][1]*largeurCase, box[i][0]*largeurCase, largeurCase, largeurCase);      
+        ctx.drawImage(boxImage, box[i][1]*largeurCase + 2, box[i][0]*largeurCase + 2, largeurCase - 4, largeurCase - 4);      
       }
     }
 
